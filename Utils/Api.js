@@ -1,5 +1,6 @@
 import { parseCookies } from "nookies";
 
+
 const myHeader = (token = null, data) => {
   const cookies = parseCookies()
   return {

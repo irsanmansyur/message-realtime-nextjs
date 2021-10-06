@@ -4,6 +4,7 @@ import Link from "next/link"
 import InputText from '../../Components/Input/InputText';
 import MessageError from '../../Components/alert/MessageError';
 import { unAuthPage } from '../../Middleware/Auth';
+import axios from 'axios';
 const register = () => {
   const [data, setData] = useState({ email: '', password: '', password_confirmation: '', name: '' });
   const [errors, setErrors] = useState({ name: false, password: false });
@@ -39,7 +40,7 @@ const register = () => {
         setMessageError(respon.message)
       }
     } catch (e) {
-      setMessageError("Failed to Connect API")
+      setMessageError("Error : " + e.message)
     }
     setProgress(false);
   }

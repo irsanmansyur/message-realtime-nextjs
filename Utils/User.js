@@ -2,7 +2,7 @@ import { myHeader } from "./Api";
 
 const toUserUtils = async (token, userId) => {
   try {
-    return await fetch(process.env.base_api + `user/show/${userId}`, {
+    return await fetch(process.env.base_url + `api/user/${userId}`, {
       headers: myHeader(token)
     }).then(res => res.json());
   } catch (error) {
@@ -20,7 +20,7 @@ const userRefreshUtils = async (user) => {
 };
 const usersUtils = async () => {
   try {
-    let res = await fetch(process.env.base_api + `user/list`, {
+    let res = await fetch(process.env.base_url + `api/user/list`, {
       headers: myHeader()
     }).then(r => r.json());
     if (res.status) return res.data;

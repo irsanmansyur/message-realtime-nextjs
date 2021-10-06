@@ -21,14 +21,11 @@ export const login = () => {
     setIsLoading(true)
     setMessageError(false)
     setIsErrors({})
+
     try {
-      const respon = await fetch(process.env.base_api + "login", {
+      const respon = await fetch("/api/auth/login", {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        }
+        body: JSON.stringify(data)
       }).then(res => res.json());
       if (!respon.errors) {
         setUserToken(respon.token)
@@ -39,7 +36,7 @@ export const login = () => {
         setMessageError(respon.message)
       }
     } catch (e) {
-      setMessageError("Failed to connect to api")
+      setMessageError("Error : " + e.message)
     }
     setIsLoading(false)
   }

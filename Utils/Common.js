@@ -13,18 +13,19 @@ const setUserToken = (token) => {
   nookies.set(null, "token", token)
 }
 const utilsCekLogin = async (token) => {
+  let auth = "Bearer " + token;
   try {
-    let res = await fetch(process.env.base_api + "user", {
-      headers: myHeader(token)
-    }).then(res => res.json());
-    if (res.data) {
-      res.data.token = token;
-      return res.data
+    const resp = await fetch(process.env.base_url + "api/auth/user", {
+      headers: {
+        "Authorization": auth
+      }
+    }).then(rs => rs.json())
+    if (resp.data) {
+      resp.data.token = token;
+      return resp.data
     }
+  } catch (error) {
     return null
-  } catch (e) {
-    return null;
   }
 }
-
 export { utilsCekLogin, setUserToken, removeUserToken }
