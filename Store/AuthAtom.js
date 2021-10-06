@@ -4,6 +4,4 @@ const theme = atom({
   key: 'select-theme',
   default: 'dark',
 });
-
-
 export { theme };
