@@ -3,8 +3,7 @@ import MessageSuccess from '../../Components/alert/MessageSuccess';
 import Link from "next/link"
 import InputText from '../../Components/Input/InputText';
 import MessageError from '../../Components/alert/MessageError';
-import nookies from "nookies"
-import { utilsCekLogin } from '../../Utils/Common';
+import { unAuthPage } from '../../Middleware/Auth';
 const register = () => {
   const [data, setData] = useState({ email: '', password: '', password_confirmation: '', name: '' });
   const [errors, setErrors] = useState({ name: false, password: false });
@@ -91,15 +90,9 @@ const register = () => {
   );
 };
 export async function getServerSideProps(ctx) {
-  const user = await utilsCekLogin(ctx);
-  if (user)
-    return {
-      redirect: {
-        destination: "/"
-      }
-    }
+  let token = unAuthPage(ctx);
   return {
-    props: { user }
+    props: {}
   }
 }
 
