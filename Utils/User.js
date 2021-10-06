@@ -32,7 +32,7 @@ const usersUtils = async () => {
 
 const userLogoutUtils = async () => {
   try {
-    let res = await fetch(process.env.base_api + `logout`, {
+    let res = await fetch(process.env.base_url + `api/auth/logout`, {
       method: "POST",
       headers: myHeader()
     }).then(r => r.json());
