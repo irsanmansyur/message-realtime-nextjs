@@ -1,7 +1,7 @@
 
 export default function handler(req, res) {
   const { authorization } = req.headers;
-  fetch(process.env.base_api_prod + "user/list", {
+  fetch(process.env.base_api + "user/list", {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",

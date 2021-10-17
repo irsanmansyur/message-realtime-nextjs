@@ -17,12 +17,13 @@ const ListMessages = ({ newMessage }) => {
   const loadMessages = async () => {
     setLoadin(true)
     let res = await getMessagesUtils(toUser.id);
+    setLoadin(false)
     if (res) {
       setMessages(res.data.reverse())
-      if (res.next_page_url)
-        setNextPage(res.next_page_url + "&id=" + toUser.id)
+      if (res.links.next)
+        setNextPage(res.links.next + "&id=" + toUser.id)
     }
-    setLoadin(false)
+
   }
   useEffect(() => {
     if (!loadin && !loadMore) {
@@ -30,15 +31,19 @@ const ListMessages = ({ newMessage }) => {
       let elUl = elLiLast.closest("ul");
       elUl.scrollTop = elUl.scrollHeight;
     }
-    console.log(messages);
+
   }, [messages]);
 
   useEffect(() => {
-    user.id && MessageChannel(user.id, toUser.id, data => {
-      if (data.message) {
-        setMessage(data.message);
-      }
-    })
+    if (user.id) {
+      setLoadMore(false)
+      MessageChannel(user.id, toUser.id, data => {
+        if (data.message) {
+          setMessage(data.message);
+        }
+      })
+    }
+
   }, [user]);
   useEffect(async () => {
     await loadMessages()
@@ -70,8 +75,8 @@ const ListMessages = ({ newMessage }) => {
           const msgs = [...res.data.reverse(), ...messages];
           setMessages(msgs)
           element.scrollTop = (element.scrollHeight - positionScroll);
-          if (res.next_page_url)
-            setNextPage(res.next_page_url + "&id=" + toUser.id)
+          if (res.links.next)
+            setNextPage(res.links.next + "&id=" + toUser.id)
           else
             setNextPage(false)
         }
@@ -79,7 +84,7 @@ const ListMessages = ({ newMessage }) => {
     }
   }
   return !loadin ?
-    <ul className="px-3 py-[5px] overflow-y-auto" style={{ maxHeight: "calc(100% - 70px)" }} onScroll={handelScroll}>
+    <ul className="px-3 pt-2 overflow-y-auto" onScroll={handelScroll}>
       {messages.map((message, i) => {
         return <li key={i}>
           <Message message={message} />

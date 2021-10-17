@@ -46,7 +46,6 @@ export const getServerSideProps = async ({ params: { id }, ...ctx }) => {
     }
   }
   const toUser = await toUserUtils(user.token, id)
-  console.log(toUser);
   return {
     props: {
       user,

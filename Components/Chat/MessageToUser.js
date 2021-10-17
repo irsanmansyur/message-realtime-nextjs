@@ -1,6 +1,5 @@
 import Image from "next/image"
 const MessageToUser = ({ message: { message, time } }) => {
-  console.log(message);
   return (
     <div className="flex items-center pr-10 mb-2">
       <Image src="https://i.imgur.com/IAgGUYF.jpg" className="rounded-full shadow-xl w-[30px] h-[30px]" width={20} height={20} />

@@ -1,6 +1,6 @@
 export default function handler(req, res) {
   const { authorization } = req.headers;
-  fetch(process.env.base_api_prod + "logout", {
+  fetch(process.env.base_api + "logout", {
     method: "POST",
     headers: {
       "Accept": "application/json",

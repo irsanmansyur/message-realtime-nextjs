@@ -1,5 +1,5 @@
 export default function handler(req, res) {
-  fetch(process.env.base_api_prod + "user", {
+  fetch(process.env.base_api + "user", {
     method: "POST",
     body: req.body,
     headers: {

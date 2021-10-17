@@ -19,12 +19,15 @@ const utilsCekLogin = async (token) => {
       headers: {
         "Authorization": auth
       }
-    }).then(rs => rs.json())
+    }).then(rs => {
+      return rs.json()
+    })
     if (resp.data) {
       resp.data.token = token;
       return resp.data
     }
   } catch (error) {
+    console.log(error.message);
     return null
   }
 }
