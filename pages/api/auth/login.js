@@ -6,7 +6,8 @@ export default function handler(req, res) {
       "Accept": "application/json",
       "Content-Type": "application/json"
     }
-  }).then(res => res.json()).then(rs =>
-    res.status(200).json(rs)
+  }).then(res => res.json()).then(rs => {
+    return res.status(200).json(rs)
+  }
   ).catch(rs => res.status(404).json(rs))
 }
