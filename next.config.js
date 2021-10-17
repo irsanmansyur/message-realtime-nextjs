@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['https:/raw.githubusercontent.com', "raw.githubusercontent.com"],
+    domains: ['https:/raw.githubusercontent.com', "raw.githubusercontent.com", "i.imgur.com"],
   },
   env: {
     base_api: "http://127.0.0.1:8001/api/",

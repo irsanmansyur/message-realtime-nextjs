@@ -15,6 +15,7 @@ const ListMessages = ({ newMessage }) => {
   const user = useRecoilValue(userAtom)
   const messagesEndRef = useRef(null)
   const loadMessages = async () => {
+    setLoadin(true)
     let res = await getMessagesUtils(toUser.id);
     if (res) {
       setMessages(res.data.reverse())
@@ -29,6 +30,7 @@ const ListMessages = ({ newMessage }) => {
       let elUl = elLiLast.closest("ul");
       elUl.scrollTop = elUl.scrollHeight;
     }
+    console.log(messages);
   }, [messages]);
 
   useEffect(() => {
@@ -77,7 +79,7 @@ const ListMessages = ({ newMessage }) => {
     }
   }
   return !loadin ?
-    <ul className="my-3 px-3 pb-[200px] max-h-screen overflow-y-auto" onScroll={handelScroll}>
+    <ul className="px-3 py-[5px] overflow-y-auto" style={{ maxHeight: "calc(100% - 70px)" }} onScroll={handelScroll}>
       {messages.map((message, i) => {
         return <li key={i}>
           <Message message={message} />

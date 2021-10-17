@@ -29,12 +29,12 @@ const CekStatus = ({ last_online, lastActivity }) => {
   }, [lastActivity]);
 
   return (
-    <div className="flex flex-col text-right pr-5">
+    <div className="flex flex-col text-right text-sm md:text-base px-3">
       {timeLeft > 0 ?
         <>
           <div className="flex items-center justify-end">
             <span className="mr-2 inline-block rounded-full w-2 h-2 bg-green-600 right-0 top-4 animate-ping" />
-            <span className="text-green-600 font-bold"> Online</span>
+            <span className="sm:mt-[3px] text-green-600 font-bold"> Online</span>
           </div>
         </>
         :
@@ -43,7 +43,7 @@ const CekStatus = ({ last_online, lastActivity }) => {
             <span className="mr-2 inline-block rounded-full w-2 h-2 bg-red-500 right-0 top-4"></span>
             <span className="text-gray-400 font-bold"> Offline</span>
           </div>
-          <span className="mt-2 text-gray-500">{last_online}</span>
+          <span className="sm:mt-[3px] text-gray-500">{last_online}</span>
         </>}
     </div>
   );
