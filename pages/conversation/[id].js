@@ -22,10 +22,10 @@ const ChatUser = ({ user: isUser, toUser: to_user }) => {
 
   return (
     <div className="h-screen bg-white flex overflow-hidden relative">
-      <div className="w-1/3 h-full bg-gray-50 overflow-y-auto border border-right border-gray-100">
+      <div className="w-0 md:w-1/3 h-full bg-gray-50 overflow-y-auto border border-right border-gray-100">
         <People toUser={toUser} />
       </div>
-      <div className="w-2/3 bg-green-50 relative">
+      <div className="md:w-2/3 w-full bg-green-50 relative h-screen overflow-hidden pb-[76px] flex flex-col">
         <TopbarChat user={toUser} />
         <ListMessages newMessage={message} />
         <div className="absolute bottom-0 w-full">
