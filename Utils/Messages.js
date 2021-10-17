@@ -4,7 +4,7 @@ import { myPusher } from "./Pusher";
 
 const getMessagesUtils = async (id) => {
   try {
-    if (id) return await fetch(process.env.base_url + `api/message/${id}`, {
+    if (id) return await fetch(`/api/message/${id}`, {
       headers: myHeader(),
     }).then(res => res.json());
   } catch (error) {
@@ -14,7 +14,7 @@ const getMessagesUtils = async (id) => {
 
 const getMessagesMoreUtils = async (url) => {
   try {
-    return await fetch(process.env.base_url + "api/message/more", {
+    return await fetch("/api/message/more", {
       method: "POST",
       body: JSON.stringify({ url }),
       headers: myHeader(),

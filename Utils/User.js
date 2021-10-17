@@ -20,7 +20,7 @@ const userRefreshUtils = async (user) => {
 };
 const usersUtils = async () => {
   try {
-    let res = await fetch(process.env.base_url + `api/user/list`, {
+    let res = await fetch(`/api/user/list`, {
       headers: myHeader()
     }).then(r => r.json());
     if (res.status) return res.data;
